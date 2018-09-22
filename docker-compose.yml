@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    build: ./server
+    image: server
+    ports:
+      - "143:143"
+      - "993:993"
+      - "4190:4190"
+    volumes:
+      - "./passwd:/etc/dovecot/passwd"
+      - vmail-home:/home/vmail
+volumes:
+  vmail-home:
