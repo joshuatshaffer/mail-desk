@@ -9,6 +9,7 @@ services:
       - "4190:4190"
     volumes:
       - "./passwd:/etc/dovecot/passwd"
+      - "./getmail:/getmail"
       - vmail-home:/home/vmail
 volumes:
   vmail-home:
