@@ -1,20 +1,24 @@
 FROM ubuntu:18.04
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y getmail4
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dovecot-imapd
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dovecot-managesieved
+RUN DEBIAN_FRONTEND=noninteractive apt-get update        \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        getmail4                                         \
+        dovecot-imapd                                    \
+        dovecot-managesieved                             \
+    && DEBIAN_FRONTEND=noninteractive apt-get clean      \
+    && rm -rf /var/lib/apt/lists/*                       \
+    && ln -s /usr/bin/python2.7 /usr/bin/python2
 
 RUN useradd --no-create-home vmail \
-    && mkdir -p /home/vmail \
-    && touch \
-        /var/log/dovecot.log \
-        /var/log/dovecot-info.log \
-        /var/log/getmail.log \
-    && chown vmail:vmail \
-        /home/vmail \
-        /var/log/dovecot.log \
-        /var/log/dovecot-info.log \
+    && mkdir -p /home/vmail        \
+    && touch                       \
+        /var/log/dovecot.log       \
+        /var/log/dovecot-info.log  \
+        /var/log/getmail.log       \
+    && chown vmail:vmail           \
+        /home/vmail                \
+        /var/log/dovecot.log       \
+        /var/log/dovecot-info.log  \
         /var/log/getmail.log
 
 COPY dovecot.conf /etc/dovecot/dovecot.conf
