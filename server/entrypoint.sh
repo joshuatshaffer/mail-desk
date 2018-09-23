@@ -4,6 +4,6 @@ set -e
 
 /etc/init.d/dovecot start
 
-/fetch.sh
+/scripts/fetch.sh
 
 exec "$@"
