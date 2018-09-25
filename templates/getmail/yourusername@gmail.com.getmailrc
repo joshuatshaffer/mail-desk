@@ -6,7 +6,7 @@ port = 993
 username = yourusername@gmail.com
 password_command = ("/scripts/get-passwd.sh", "yourusername@gmail.com")
 mailboxes = ("INBOX",)
-move_on_delete = .Trash
+move_on_delete = "[Gmail]/Trash"
 
 [destination]
 type = MDA_external
