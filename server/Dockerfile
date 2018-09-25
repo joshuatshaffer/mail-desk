@@ -35,4 +35,4 @@ COPY get-passwd.sh /scripts/get-passwd.sh
 COPY entrypoint.sh /scripts/entrypoint.sh
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
-CMD ["tail", "--follow", "--retry", "/var/log/dovecot.log"]
+CMD ["tail", "--follow", "--retry", "/var/log/dovecot.log", "/var/log/getmail.log"]
